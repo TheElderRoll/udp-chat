@@ -1,5 +1,3 @@
-#include "mainwindow.h"
-#include <net.h>
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>

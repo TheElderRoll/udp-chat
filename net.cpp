@@ -1,9 +1,6 @@
 #include "net.h"
 #include <QUdpSocket>
-#include <QDataStream>
-#include <thread>
-#include <QtDebug>
-#include <QThread>
+
 NetManager::NetManager():QObject(){}
 
 void NetManager::initConnection(int localPort, int remotePort){
@@ -11,7 +8,6 @@ void NetManager::initConnection(int localPort, int remotePort){
     this->socket->bind(QHostAddress::Any, localPort);
     connect(socket, &QUdpSocket::readyRead, this, &NetManager::read);
     this->remotePort = remotePort;
-    qDebug()<<QThread::currentThreadId();
     emit socketCreated();
 }
 

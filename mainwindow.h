@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 #include <net.h>
 #include <QMainWindow>
-#include <QUdpSocket>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
