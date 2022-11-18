@@ -31,6 +31,7 @@ void NetManager::read(){
 void NetManager::closeSocket(){
     this->socket->close();
     delete socket;
+    socket = nullptr;
 }
 
 void NetManager::setRemotePort(int remotePort){
@@ -38,5 +39,8 @@ void NetManager::setRemotePort(int remotePort){
 }
 
 NetManager::~NetManager(){
-    delete socket;
+    if(socket){
+        delete socket;
+        socket = nullptr;
+    }
 }

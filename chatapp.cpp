@@ -21,7 +21,8 @@ void ChatApp::showMainWindow(){
 
 ChatApp::~ChatApp(){
     this->net->quit();
-    this->net->wait();
-    this->net->terminate();
+    if(!this->net->wait(50)){
+        this->net->terminate();
+    }
     delete net;
 }
