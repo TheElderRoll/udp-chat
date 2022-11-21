@@ -12,6 +12,7 @@ ChatApp::ChatApp(int & argc, char ** argv):QApplication(argc, argv){
     connect(network.get(), &NetManager::socketCreated, main_window.get(),&MainWindow::blockConnectButton, Qt::QueuedConnection);
     connect(network.get(), &NetManager::newMessage, main_window.get(),&MainWindow::processNewMessage, Qt::QueuedConnection);
     connect(main_window.get(), &MainWindow::closeConnection, network.get(), &NetManager::closeSocket, Qt::QueuedConnection);
+    connect(network.get(), &NetManager::connectionAlreadyClosed, main_window.get(), &MainWindow::reciveConAlreadyClosed, Qt::QueuedConnection);
     net->start();
 }
 
@@ -25,4 +26,5 @@ ChatApp::~ChatApp(){
         this->net->terminate();
     }
     delete net;
+    this->net = nullptr;
 }

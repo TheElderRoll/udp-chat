@@ -18,6 +18,7 @@ class NetManager: public QObject{
   signals:
     void newMessage(QString message);
     void socketCreated();
+    void connectionAlreadyClosed();
 
   public slots:
     void initConnection(int localPort, int remotePort);

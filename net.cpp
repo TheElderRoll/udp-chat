@@ -1,7 +1,8 @@
 #include "net.h"
-#include <QUdpSocket>
 
-NetManager::NetManager():QObject(){}
+NetManager::NetManager():QObject(){
+    this->socket = nullptr;
+}
 
 void NetManager::initConnection(int localPort, int remotePort){
     this->socket = new QUdpSocket(this);
@@ -29,9 +30,13 @@ void NetManager::read(){
 }
 
 void NetManager::closeSocket(){
-    this->socket->close();
-    delete socket;
-    socket = nullptr;
+    if(this->socket){
+        this->socket->close();
+        delete socket;
+        socket = nullptr;
+        return;
+    }
+    emit connectionAlreadyClosed();
 }
 
 void NetManager::setRemotePort(int remotePort){
@@ -39,8 +44,5 @@ void NetManager::setRemotePort(int remotePort){
 }
 
 NetManager::~NetManager(){
-    if(socket){
-        delete socket;
-        socket = nullptr;
-    }
+    delete socket;
 }

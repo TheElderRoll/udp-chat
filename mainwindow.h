@@ -1,6 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <net.h>
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -13,7 +12,6 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void setNetwork(NetManager* network);
     ~MainWindow();
 
 private:
@@ -27,6 +25,7 @@ private slots:
 public slots:
     void blockConnectButton();
     void processNewMessage(QString message);
+    void reciveConAlreadyClosed();
 
 signals:
     void portsReceived(int localPort, int remotePort);

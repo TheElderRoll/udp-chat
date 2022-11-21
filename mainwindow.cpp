@@ -23,12 +23,12 @@ void MainWindow::connectClicked(){
 
 void MainWindow::disconnectClicked(){
     emit closeConnection();
-     ui->connectButton->setEnabled(true);
+    ui->connectButton->setEnabled(true);
 }
 
 void MainWindow::sendClicked(){
     if(ui->connectButton->isEnabled()){
-        QMessageBox::warning(this, "Внимание!", "Соединение не установлено, нажмите <Подключить>");
+        QMessageBox::warning(this, "Внимание!", "Соединение не установлено, нажмите <Подключить>.");
         return;
     }
 
@@ -45,6 +45,11 @@ void MainWindow::processNewMessage(QString message){
 void MainWindow::blockConnectButton(){
     ui->connectButton->setEnabled(false);
 }
+
+void MainWindow::reciveConAlreadyClosed(){
+     QMessageBox::warning(this, "Внимание!", "Соединение уже разорвано, введите порты и нажмите <Подключится>.");
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
